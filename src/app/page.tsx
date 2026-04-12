@@ -1,3 +1,4 @@
+import Login from "../features/login";
 import Navbar from "../features/navbar";
 
 export default function Home() {
@@ -5,6 +6,7 @@ export default function Home() {
     <div>
       <main>
         <Navbar></Navbar>
+        <Login></Login>
       </main>
     </div>
   );
