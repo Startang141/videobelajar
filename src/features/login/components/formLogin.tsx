@@ -3,7 +3,7 @@ import Link from "next/link";
 const FormLogin = () => {
   return (
     <>
-      <div className="mt-9 mb-6">
+      <div className="mt-9 mb-6 flex flex-col gap-4">
         <div>
           <label htmlFor="email" className="text-md text-slate-700">
             E-Mail <span className="text-red-600">*</span>
@@ -14,7 +14,6 @@ const FormLogin = () => {
             placeholder="Email"
             className="border block w-full rounded-md border-gray-400 px-3 py-2.5 text-md focus:border-green-600 focus:outline focus:outline-green-600"
           />
-          <p className="text-red-700">Invalid Email</p>
         </div>
         <div>
           <label htmlFor="password" className="text-md text-slate-700">
@@ -28,7 +27,6 @@ const FormLogin = () => {
               className="border block w-full rounded-md border-gray-400 px-3 py-2.5 text-md focus:border-green-600 focus:outline focus:outline-green-600"
             />
           </div>
-          <p className="text-red-700">Invalid Password</p>
         </div>
         <Link href="youtube.com" className="text-right block mt-2">
           Lupa Password?
