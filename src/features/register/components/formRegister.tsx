@@ -65,7 +65,7 @@ const FormRegister = () => {
               <select
                 name=""
                 id=""
-                className="border block p-[12.5px] text-md border-gray-400 rounded-tr-md rounded-br-md focus:border-green-600 focus:outline focus:outline-green-600"
+                className="border block py-[12.5px] px-1 text-md border-gray-400 rounded-tr-md rounded-br-md focus:border-green-600 focus:outline focus:outline-green-600"
               >
                 <option value="+62">+62</option>
                 <option value="+1">+1</option>
@@ -118,9 +118,9 @@ const FormRegister = () => {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   className="lucide lucide-eye-off-icon lucide-eye-off text-gray-400"
                 >
                   <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49" />

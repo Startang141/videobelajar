@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const ButtonRegister = () => {
   return (
@@ -10,12 +11,12 @@ const ButtonRegister = () => {
         >
           Masuk
         </button>
-        <button
-          type="button"
-          className="text-md block w-full bg-green-50 text-green-600 rounded-md font-bold py-2.5 hover:bg-green-100"
+        <Link
+          href="/"
+          className="text-md block w-full bg-green-50 text-green-600 rounded-md font-bold py-2.5 hover:bg-green-100 text-center"
         >
-          Login
-        </button>
+          Daftar
+        </Link>
       </div>
       <div className="flex items-center gap-2">
         <div className="h-0.5 bg-gray-200 flex-1 rounded-2xl"></div>
