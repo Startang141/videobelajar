@@ -1,11 +1,9 @@
-import Login from "../features/login";
-import Navbar from "../features/navbar";
+import Homepage from "../features/homepage";
 
 export default function Home() {
   return (
     <div>
-      <Navbar />
-      <Login></Login>
+      <Homepage />
     </div>
   );
 }
