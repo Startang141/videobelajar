@@ -21,8 +21,8 @@ const Newsletter = () => {
                 <div className="border flex justify-between w-full rounded-lg bg-white border-gray-400 pl-8 pr-3 py-2.5 text-md focus-within:border-amber-500 focus-within:outline focus-within:outline-amber-500">
                   <input
                     type="email"
-                    name="password"
-                    placeholder="Password"
+                    name="email"
+                    placeholder="Masukan Emailmu"
                     className="outline-0 flex-1 focus:outline-none focus:border-0"
                   />
                   <button
