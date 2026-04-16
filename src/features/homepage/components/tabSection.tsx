@@ -8,7 +8,7 @@ const TabSection = () => {
   return (
     <>
       <div>
-        <ul className="flex flex-row gap-8">
+        <ul className="flex flex-row overflow-x-scroll w-full md:w-full gap-8">
           <li className="flex flex-col" onClick={() => setIsActive("All")}>
             <Link
               href={""}
@@ -88,7 +88,7 @@ const TabSection = () => {
       </div>
       <div className="my-8">
         <div className={`${isActive == "All" ? `block` : `hidden`} `}>
-          <div className="grid grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6">
             <Card
               thumbImage="https://picsum.photos/500/300?random=1"
               personImage="https://i.pravatar.cc/300?img=1"
