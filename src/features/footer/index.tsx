@@ -8,11 +8,11 @@ const Footer = () => {
     <>
       <div className="border-t border-gray-300">
         <div className="container mx-auto font-dm-sans py-14">
-          <div className="flex justify-between pb-10 ">
+          <div className="flex flex-col md:flex-row justify-between pb-10 px-5 md:px-0">
             <BrandFooter />
             <NavFooter />
           </div>
-          <div className="flex flex-row justify-between items-center pt-5 border-t border-t-gray-400">
+          <div className="flex flex-col-reverse gap-3 md:flex-row md:justify-between md:items-center pt-5 border-t border-t-gray-400 px-5 md:px-0">
             <Copyrights />
             <Socmed />
           </div>

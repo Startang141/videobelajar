@@ -5,7 +5,7 @@ import Newsletter from "./components/newsletter";
 const Homepage = () => {
   return (
     <>
-      <div className="font-dm-sans bg-[#fffdf3]">
+      <div className="font-dm-sans bg-[#fffdf3] overflow-hidden">
         <Hero />
         <KoleksiVideo />
         <Newsletter />

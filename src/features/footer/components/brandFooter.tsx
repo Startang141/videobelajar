@@ -4,7 +4,7 @@ import Link from "next/link";
 const BrandFooter = () => {
   return (
     <>
-      <div className="w-[30%]">
+      <div className="md:w-[30%]">
         <Link href="/">
           <Image src="/Logo.png" alt="" width={194} height={30} />
         </Link>
