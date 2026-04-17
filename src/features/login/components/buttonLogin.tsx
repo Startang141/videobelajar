@@ -5,12 +5,14 @@ const ButtonLogin = () => {
   return (
     <>
       <div className="flex flex-col gap-4">
-        <button
-          type="submit"
-          className="text-md block w-full text-white bg-green-600 font-bold rounded-md py-2.5 hover:bg-green-700"
-        >
-          Masuk
-        </button>
+        <Link href="/">
+          <button
+            type="button"
+            className="text-md block w-full text-white bg-green-600 font-bold rounded-md py-2.5 hover:bg-green-700"
+          >
+            Masuk
+          </button>
+        </Link>
         <Link
           href="/register"
           className="text-md block w-full bg-green-50 text-green-600 rounded-md font-bold py-2.5 hover:bg-green-100 text-center"
