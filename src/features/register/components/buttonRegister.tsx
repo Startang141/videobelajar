@@ -9,13 +9,13 @@ const ButtonRegister = () => {
           type="submit"
           className="text-md block w-full text-white bg-green-600 font-bold rounded-md py-2.5 hover:bg-green-700"
         >
-          Masuk
+          Daftar
         </button>
         <Link
-          href="/"
+          href="/login"
           className="text-md block w-full bg-green-50 text-green-600 rounded-md font-bold py-2.5 hover:bg-green-100 text-center"
         >
-          Daftar
+          Login
         </Link>
       </div>
       <div className="flex items-center gap-2">
