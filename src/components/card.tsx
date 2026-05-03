@@ -4,9 +4,35 @@ import { FC } from "react";
 interface CardProps {
   thumbImage: string;
   personImage: string;
+  title: string;
+  description: string;
+  personName: string;
+  role: string;
+  price: number;
+  rating: number;
+  totalReviews: number;
 }
 
-const Card: FC<CardProps> = ({ thumbImage, personImage }) => {
+const Card: FC<CardProps> = ({
+  thumbImage,
+  personImage,
+  title,
+  description,
+  personName,
+  role,
+  price,
+  rating,
+  totalReviews,
+}) => {
+  const formatPrice = (price: number) => {
+    if (price >= 1000000) {
+      return `Rp ${(price / 1000000).toFixed(1)}jt`;
+    }
+    if (price >= 100000) {
+      return `Rp ${price / 1000}K`;
+    }
+    return `Rp ${price}`;
+  };
   return (
     <>
       <div className="border border-gray-400 rounded-lg md:p-5 p-4 inline-flex flex-col md:gap-4 gap-2 bg-white">
@@ -20,12 +46,9 @@ const Card: FC<CardProps> = ({ thumbImage, personImage }) => {
           />
           <div className="flex flex-col gap-4 ">
             <div className="font-poppins flex flex-col md:gap-2">
-              <h3 className="text-lg font-semibold leading-none">
-                Big 4 Auditor Financial Analyst
-              </h3>
+              <h3 className="text-lg font-semibold leading-none">{title}</h3>
               <p className="text-md font-medium text-gray-500 hidden md:block">
-                Mulai transformasi dengan instruktur profesional, harga yang
-                terjangkau, dan kurikulum terbaik
+                {description}
               </p>
             </div>
             <div className="flex flex-row gap-2 items-center">
@@ -37,10 +60,8 @@ const Card: FC<CardProps> = ({ thumbImage, personImage }) => {
                 className="w-9 h-9 md:w-10 md:h-10 rounded-lg object-cover"
               />
               <div>
-                <h4 className="text-md font-medium">Jenna Ortega</h4>
-                <p className="text-sm text-gray-400">
-                  Senior Accountant di <span className="font-bold">Gojek</span>
-                </p>
+                <h4 className="text-md font-medium">{personName}</h4>
+                <p className="text-sm text-gray-400">{role}</p>
               </div>
             </div>
           </div>
@@ -54,10 +75,12 @@ const Card: FC<CardProps> = ({ thumbImage, personImage }) => {
               <Image src="/EmptyStar.svg" alt="" width={18} height={18} />
               <Image src="/EmptyStar.svg" alt="" width={18} height={18} />
             </div>
-            <p className="text-gray-400 text-xs md:text-md">3.5 (86)</p>
+            <p className="text-gray-400 text-xs md:text-md">
+              {rating} ({totalReviews})
+            </p>
           </div>
           <h3 className="font-semibold text-xl md:text-2xl text-green-600">
-            Rp 300K
+            {formatPrice(price)}
           </h3>
         </div>
       </div>

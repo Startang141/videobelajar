@@ -14,7 +14,7 @@ const Register = () => {
               Yuk, daftarkan akunmu sekarang juga!
             </p>
           </div>
-          <form action="">
+          <form>
             <FormRegister />
             <ButtonRegister />
           </form>

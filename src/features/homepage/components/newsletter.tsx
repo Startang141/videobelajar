@@ -27,7 +27,7 @@ const Newsletter = () => {
                   />
                   <button
                     type="button"
-                    className="bg-amber-400 hover:bg-amber-500 py-2.5 px-6 text-md rounded-lg text-white font-bold"
+                    className="bg-amber-400 hover:bg-amber-500 py-2.5 px-6 text-md rounded-lg text-white font-bold cursor-pointer"
                   >
                     Subscribe
                   </button>
