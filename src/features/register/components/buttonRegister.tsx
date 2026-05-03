@@ -7,7 +7,7 @@ const ButtonRegister = () => {
         <Button
           type="submit"
           name="Daftar"
-          className="text-white bg-green-600 hover:bg-green-700"
+          className="text-white bg-green-600 hover:bg-green-700 w-full"
         />
         <Button
           href="/login"
@@ -25,7 +25,7 @@ const ButtonRegister = () => {
         src="/google-icon.svg"
         type="button"
         name="Masuk dengan Google"
-        className="bg-white text-gray-600 border-gray-200 border hover:bg-slate-50 w-full font-bold"
+        className="bg-white text-gray-600 border-gray-200 border hover:bg-slate-50 w-full"
       />
     </>
   );
