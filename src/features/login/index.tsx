@@ -1,7 +1,11 @@
+"use client";
+
 import ButtonLogin from "./components/buttonLogin";
 import FormLogin from "./components/formLogin";
+import { useAuth } from "@/src/context/AuthContext";
 
 const Login = () => {
+  const { handleLogin } = useAuth();
   return (
     <>
       <div className="bg-[#fffdf3] w-full md:h-screen h-[130vh] flex flex-row items-center relative">
@@ -12,7 +16,7 @@ const Login = () => {
               Yuk, lanjutin belajarmu di videobelajar
             </p>
           </div>
-          <form action="">
+          <form onSubmit={handleLogin}>
             <FormLogin />
             <ButtonLogin />
           </form>

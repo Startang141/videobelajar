@@ -1,3 +1,4 @@
+import Button from "@/src/components/Button";
 import Link from "next/link";
 
 const Hero = () => {
@@ -19,14 +20,11 @@ const Hero = () => {
                   meningkatkan pemahaman Anda.
                 </p>
               </div>
-              <button className="mt-8">
-                <Link
-                  href={"#"}
-                  className="bg-green-600 hover:bg-green-700 py-2.5 px-6 rounded-md text-sm text-white"
-                >
-                  Temukan Video Course untuk Dipelajari
-                </Link>
-              </button>
+              <Button
+                type="button"
+                name="Temukan Video Course untuk Dipelajari"
+                className="bg-green-600 hover:bg-green-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-fit mx-auto"
+              />
             </div>
           </div>
         </div>
