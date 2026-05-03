@@ -34,6 +34,7 @@ const NavUser = () => {
               className="text-white bg-green-600 hover:bg-green-700 px-4"
             />
             <Button
+              href="/register"
               name="Register"
               className="bg-white text-green-600 hover:bg-green-100 border-green-600 border px-4"
             />
