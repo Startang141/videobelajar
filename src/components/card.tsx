@@ -1,5 +1,8 @@
+"use client";
 import Image from "next/image";
 import { FC } from "react";
+import Button from "./Button";
+import { useAuth } from "../context/AuthContext";
 
 interface CardProps {
   thumbImage: string;
@@ -33,9 +36,11 @@ const Card: FC<CardProps> = ({
     }
     return `Rp ${price}`;
   };
+
+  const { userLogin } = useAuth();
   return (
     <>
-      <div className="border border-gray-400 rounded-lg md:p-5 p-4 inline-flex flex-col md:gap-4 gap-2 bg-white">
+      <div className="border border-gray-400 rounded-lg md:p-5 p-4 inline-flex flex-col justify-between md:gap-4 gap-2 bg-white">
         <div className="flex flex-row md:flex-col gap-3 md:gap-4">
           <Image
             src={thumbImage}
@@ -44,7 +49,7 @@ const Card: FC<CardProps> = ({
             height={82}
             className=" md:w-full md:h-full rounded-lg object-cover"
           />
-          <div className="flex flex-col gap-4 ">
+          <div className="flex flex-col gap-4">
             <div className="font-poppins flex flex-col md:gap-2">
               <h3 className="text-lg font-semibold leading-none">{title}</h3>
               <p className="text-md font-medium text-gray-500 hidden md:block">
@@ -83,6 +88,25 @@ const Card: FC<CardProps> = ({
             {formatPrice(price)}
           </h3>
         </div>
+        {userLogin?.role === "Admin" && (
+          <div className="flex gap-2 flex-row justify-between">
+            <Button
+              type="button"
+              name="Edit"
+              className="bg-green-600 hover:bg-green-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-fit mx-auto"
+            />
+            <Button
+              type="button"
+              name="Detail"
+              className="bg-green-600 hover:bg-green-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-fit mx-auto"
+            />
+            <Button
+              type="button"
+              name="Delete"
+              className="bg-green-600 hover:bg-green-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-fit mx-auto"
+            />
+          </div>
+        )}
       </div>
     </>
   );
