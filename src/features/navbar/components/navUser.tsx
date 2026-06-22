@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 const NavUser = () => {
-  const { isLogin } = useAuth();
+  const { userLogin } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -18,9 +18,9 @@ const NavUser = () => {
             Kategori
           </p>
         </Link>
-        {isLogin ? (
+        {userLogin ? (
           <Image
-            src="https://i.pravatar.cc/300?img=12"
+            src={userLogin.profile}
             alt=""
             width={44}
             height={44}
@@ -53,14 +53,16 @@ const NavUser = () => {
             />
           </button>
           <div
-            className={`absolute z-99 right-0 top-14 bg-white shadow-md w-96 border border-gray-500 rounded-md ${isOpen ? `block` : `hidden`}`}
+            className={`absolute z-99 right-0 top-14 bg-white shadow-md w-96 border border-gray-500 rounded-md ${
+              isOpen ? `block` : `hidden`
+            }`}
           >
             <div className="flex flex-col justify-between p-2 gap-4">
               <div className="flex-row gap-9 items-center flex justify-between">
                 <p className="text-gray-400 font-medium text-lg">Kategori</p>
-                {isLogin && (
+                {userLogin && (
                   <Image
-                    src="https://i.pravatar.cc/300?img=12"
+                    src={userLogin.profile}
                     alt=""
                     width={44}
                     height={44}
@@ -68,7 +70,7 @@ const NavUser = () => {
                   />
                 )}
               </div>
-              {!isLogin && (
+              {!userLogin && (
                 <div className="flex flex-row items-center gap-2">
                   <Button
                     href="/login"
