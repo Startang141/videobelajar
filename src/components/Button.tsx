@@ -4,7 +4,7 @@ import { ButtonHTMLAttributes, FC } from "react";
 
 interface ButtonProps {
   href?: string;
-  name: string;
+  name?: string;
   type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
   src?: string;
   className?: string;

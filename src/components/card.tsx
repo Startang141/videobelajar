@@ -92,18 +92,18 @@ const Card: FC<CardProps> = ({
           <div className="flex gap-2 flex-row justify-between">
             <Button
               type="button"
-              name="Edit"
-              className="bg-green-600 hover:bg-green-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-fit mx-auto"
+              src="/eye.svg"
+              className="bg-amber-600 hover:bg-amber-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto"
             />
             <Button
               type="button"
-              name="Detail"
-              className="bg-green-600 hover:bg-green-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-fit mx-auto"
+              src="/pencil.svg"
+              className="bg-blue-600 hover:bg-blue-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto"
             />
             <Button
               type="button"
-              name="Delete"
-              className="bg-green-600 hover:bg-green-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-fit mx-auto"
+              src="/trash.svg"
+              className="bg-red-600 hover:bg-red-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto"
             />
           </div>
         )}

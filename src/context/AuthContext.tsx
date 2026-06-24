@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { Users } from "../lib/dummyUser";
 import { createContext, ReactNode, useContext, useState } from "react";
+import { toast } from "sonner";
 
 interface UserType {
   id: number;
@@ -45,11 +46,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const password = formData.get("password");
 
     const User = Users.find(
-      (item) => item.email === email && item.password === password
+      (item) => item.email === email && item.password === password,
     );
 
     if (!User) {
-      alert("Email atau Password Salah");
+      toast.error("Email atau Password Salah");
       return;
     }
 
@@ -64,7 +65,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     setUserLogin(loggedInUser);
 
-    alert(`Login berhasil sebagai ${User.role}`);
+    toast.success(`Login berhasil sebagai ${User.role}`);
 
     router.push("/");
   };
@@ -72,10 +73,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const handleLogout = () => {
     localStorage.removeItem("user");
 
+    toast.success(`Logout berhasil`);
     setUserLogin(null);
 
     router.push("/login");
   };
+
   return (
     <AuthContext.Provider value={{ userLogin, handleLogin, handleLogout }}>
       {children}
