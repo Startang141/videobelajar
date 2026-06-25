@@ -2,24 +2,32 @@
 import Card from "@/src/components/card";
 import Link from "next/link";
 import { useState } from "react";
-import { courses } from "@/src/lib/dummyCourse";
+import { useCourse } from "@/src/context/CourseContext";
 
 const Tabs = [
-  { id: 1, key: "All", text: "Semua Kelas" },
-  { id: 2, key: "Tab1", text: "Pemasaran" },
-  { id: 3, key: "Tab2", text: "Desain" },
-  { id: 4, key: "Tab3", text: "Pengembangan Diri" },
-  { id: 5, key: "Tab4", text: "Bisnis" },
+  { id: 1, key: "All", text: "Semua Kelas", category: null },
+  { id: 2, key: "pemasaran", text: "Pemasaran", category: "pemasaran" },
+  { id: 3, key: "desain", text: "Desain", category: "desain" },
+  {
+    id: 4,
+    key: "pengembangan diri",
+    text: "Pengembangan Diri",
+    category: "pengembangan diri",
+  },
+  { id: 5, key: "bisnis", text: "Bisnis", category: "bisnis" },
 ];
 
 const TabSection = () => {
-  const Pemasaran = courses.filter((course) => course.category === "pemasaran");
-  const Desain = courses.filter((course) => course.category === "desain");
-  const PengembanganDiri = courses.filter(
-    (course) => course.category === "pengembangan diri",
-  );
-  const Bisnis = courses.filter((course) => course.category === "bisnis");
   const [isActive, setIsActive] = useState("All");
+  const { listCourse } = useCourse();
+
+  const activeTab = Tabs.find((tab) => tab.key === isActive);
+
+  const filteredCourse =
+    activeTab?.category === null
+      ? listCourse
+      : listCourse.filter((course) => course.category === activeTab?.category);
+
   return (
     <>
       <div>
@@ -52,83 +60,12 @@ const TabSection = () => {
         </div>
       </div>
       <div className="my-8">
-        <div className={`${isActive == "All" ? `block` : `hidden`} `}>
+        <div className="block">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {courses.map((data) => (
+            {filteredCourse.map((data) => (
               <Card
                 key={data.id}
-                title={data.title}
-                description={data.description}
-                thumbImage={data.thumbImage}
-                personImage={data.instructor.image}
-                personName={data.instructor.name}
-                role={data.instructor.role}
-                price={data.price}
-                rating={data.rating}
-                totalReviews={data.totalReviews}
-              ></Card>
-            ))}
-          </div>
-        </div>
-        <div className={`${isActive == "Tab1" ? `block` : `hidden`} mt-8`}>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Pemasaran.map((data) => (
-              <Card
-                key={data.id}
-                title={data.title}
-                description={data.description}
-                thumbImage={data.thumbImage}
-                personImage={data.instructor.image}
-                personName={data.instructor.name}
-                role={data.instructor.role}
-                price={data.price}
-                rating={data.rating}
-                totalReviews={data.totalReviews}
-              ></Card>
-            ))}
-          </div>
-        </div>
-        <div className={`${isActive == "Tab2" ? `block` : `hidden`} mt-8`}>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Desain.map((data) => (
-              <Card
-                key={data.id}
-                title={data.title}
-                description={data.description}
-                thumbImage={data.thumbImage}
-                personImage={data.instructor.image}
-                personName={data.instructor.name}
-                role={data.instructor.role}
-                price={data.price}
-                rating={data.rating}
-                totalReviews={data.totalReviews}
-              ></Card>
-            ))}
-          </div>
-        </div>
-        <div className={`${isActive == "Tab3" ? `block` : `hidden`} mt-8`}>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PengembanganDiri.map((data) => (
-              <Card
-                key={data.id}
-                title={data.title}
-                description={data.description}
-                thumbImage={data.thumbImage}
-                personImage={data.instructor.image}
-                personName={data.instructor.name}
-                role={data.instructor.role}
-                price={data.price}
-                rating={data.rating}
-                totalReviews={data.totalReviews}
-              ></Card>
-            ))}
-          </div>
-        </div>
-        <div className={`${isActive == "Tab4" ? `block` : `hidden`} mt-8`}>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Bisnis.map((data) => (
-              <Card
-                key={data.id}
+                id={data.id}
                 title={data.title}
                 description={data.description}
                 thumbImage={data.thumbImage}

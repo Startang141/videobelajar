@@ -1,5 +1,6 @@
 "use client";
 
+import { useCourse } from "@/src/context/CourseContext";
 import { FC, useState } from "react";
 
 interface modalAddProps {
@@ -7,6 +8,8 @@ interface modalAddProps {
 }
 
 const ModalAdd: FC<modalAddProps> = ({ handleCloseModal }) => {
+  const { addCourse } = useCourse();
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -32,6 +35,34 @@ const ModalAdd: FC<modalAddProps> = ({ handleCloseModal }) => {
       [name]: value,
     }));
   };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const newCourse = {
+      id: Date.now(),
+      title: formData.title,
+      description: formData.description,
+      category: formData.category,
+      thumbImage: formData.thumbImage,
+      instructor: {
+        name: formData.instructorName,
+        role: formData.instructorRole,
+        company: formData.instructorCompany,
+        image: formData.instructorImage,
+      },
+      rating: Number(formData.rating),
+      price: Number(formData.price),
+      totalReviews: 0,
+    };
+
+    // console.log(newCourse);
+
+    addCourse(newCourse);
+
+    handleCloseModal();
+  };
+
   return (
     <>
       <div>
@@ -42,7 +73,7 @@ const ModalAdd: FC<modalAddProps> = ({ handleCloseModal }) => {
               X
             </button>
           </div>
-          <form className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
             <div className="flex flex-col">
               <label htmlFor="title" className="mb-1">
                 Course Title
