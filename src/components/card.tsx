@@ -3,8 +3,10 @@ import Image from "next/image";
 import { FC } from "react";
 import Button from "./Button";
 import { useAuth } from "../context/AuthContext";
+import { useCourse } from "../context/CourseContext";
 
 interface CardProps {
+  id: number;
   thumbImage: string;
   personImage: string;
   title: string;
@@ -26,6 +28,7 @@ const Card: FC<CardProps> = ({
   price,
   rating,
   totalReviews,
+  id,
 }) => {
   const formatPrice = (price: number) => {
     if (price >= 1000000) {
@@ -37,6 +40,8 @@ const Card: FC<CardProps> = ({
     return `Rp ${price}`;
   };
 
+  const { deleteCourse } = useCourse();
+
   const { userLogin } = useAuth();
   return (
     <>
@@ -45,9 +50,9 @@ const Card: FC<CardProps> = ({
           <Image
             src={thumbImage}
             alt=""
-            width={82}
-            height={82}
-            className=" md:w-full md:h-full rounded-lg object-cover"
+            width={500}
+            height={300}
+            className="w-[100px] md:w-[500px] md:h-[300px] rounded-lg object-cover"
           />
           <div className="flex flex-col gap-4">
             <div className="font-poppins flex flex-col md:gap-2">
@@ -90,21 +95,36 @@ const Card: FC<CardProps> = ({
         </div>
         {userLogin?.role === "Admin" && (
           <div className="flex gap-2 flex-row justify-between">
-            <Button
-              type="button"
-              src="/eye.svg"
-              className="bg-amber-600 hover:bg-amber-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto"
-            />
-            <Button
-              type="button"
-              src="/pencil.svg"
-              className="bg-blue-600 hover:bg-blue-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto"
-            />
-            <Button
-              type="button"
-              src="/trash.svg"
-              className="bg-red-600 hover:bg-red-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto"
-            />
+            <button className="bg-amber-600 hover:bg-amber-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto cursor-pointer">
+              <Image
+                src={"/eye.svg"}
+                width={20}
+                height={20}
+                alt=""
+                className="mx-auto"
+              />
+            </button>
+            <button className="bg-blue-600 hover:bg-blue-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto cursor-pointer">
+              <Image
+                src={"/pencil.svg"}
+                width={20}
+                height={20}
+                alt=""
+                className="mx-auto"
+              />
+            </button>
+            <button
+              className="bg-red-600 hover:bg-red-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto cursor-pointer"
+              onClick={() => deleteCourse(id)}
+            >
+              <Image
+                src={"/trash.svg"}
+                width={20}
+                height={20}
+                alt=""
+                className="mx-auto"
+              />
+            </button>
           </div>
         )}
       </div>

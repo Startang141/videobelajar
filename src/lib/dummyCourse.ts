@@ -4,7 +4,7 @@ export const courses = [
     title: "Big 4 Auditor Financial Analyst",
     description: "Mulai transformasi dengan instruktur profesional, harga yang terjangkau, dan kurikulum terbaik",
     category: "bisnis",
-    thumbImage: "https://picsum.photos/500/300?random=1",
+    thumbImage: "https://picsum.photos/id/1/500/300",
     instructor: {
       name: "Jenna Ortega",
       role: "Senior Accountant",
