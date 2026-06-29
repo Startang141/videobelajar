@@ -3,30 +3,73 @@
 import { useCourse } from "@/src/context/CourseContext";
 import { FC, useState } from "react";
 
-interface modalAddProps {
-  handleCloseModal: () => void;
+interface InstructorType {
+  name: string;
+  role: string;
+  company: string;
+  image: string;
 }
 
-const ModalAdd: FC<modalAddProps> = ({ handleCloseModal }) => {
-  const { addCourse } = useCourse();
+interface CourseType {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  thumbImage: string;
+  instructor: InstructorType;
+  rating: number;
+  totalReviews: number;
+  price: number;
+}
 
-  const [formData, setFormData] = useState({
-    title: "",
-    description: "",
-    category: "",
-    thumbImage: "",
-    instructorName: "",
-    instructorRole: "",
-    instructorCompany: "",
-    instructorImage: "",
-    rating: "",
-    price: "",
-  });
+interface modalFormProps {
+  handleCloseModal: () => void;
+  courseToEdit: CourseType | null;
+}
+
+const getInitialFormData = (courseToEdit: CourseType | null) => {
+  if (!courseToEdit) {
+    return {
+      title: "",
+      description: "",
+      category: "",
+      thumbImage: "",
+      instructorName: "",
+      instructorRole: "",
+      instructorCompany: "",
+      instructorImage: "",
+      rating: "",
+      price: "",
+    };
+  }
+
+  return {
+    title: courseToEdit.title,
+    description: courseToEdit.description,
+    category: courseToEdit.category,
+    thumbImage: courseToEdit.thumbImage,
+    instructorName: courseToEdit.instructor.name,
+    instructorRole: courseToEdit.instructor.role,
+    instructorCompany: courseToEdit.instructor.company,
+    instructorImage: courseToEdit.instructor.image,
+    rating: String(courseToEdit.rating),
+    price: String(courseToEdit.price),
+  };
+};
+
+const ModalForm: FC<modalFormProps> = ({ handleCloseModal, courseToEdit }) => {
+  const { addCourse, updateCourse } = useCourse();
+
+  const [formData, setFormData] = useState(() =>
+    getInitialFormData(courseToEdit)
+  );
+
+  const isEditMode = courseToEdit !== null;
 
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >,
+    >
   ) => {
     const { name, value } = e.target;
 
@@ -40,7 +83,7 @@ const ModalAdd: FC<modalAddProps> = ({ handleCloseModal }) => {
     e.preventDefault();
 
     const newCourse = {
-      id: Date.now(),
+      id: courseToEdit ? courseToEdit.id : Date.now(),
       title: formData.title,
       description: formData.description,
       category: formData.category,
@@ -53,12 +96,14 @@ const ModalAdd: FC<modalAddProps> = ({ handleCloseModal }) => {
       },
       rating: Number(formData.rating),
       price: Number(formData.price),
-      totalReviews: 0,
+      totalReviews: courseToEdit ? courseToEdit.totalReviews : 0,
     };
 
-    // console.log(newCourse);
-
-    addCourse(newCourse);
+    if (isEditMode) {
+      updateCourse(newCourse);
+    } else {
+      addCourse(newCourse);
+    }
 
     handleCloseModal();
   };
@@ -68,7 +113,9 @@ const ModalAdd: FC<modalAddProps> = ({ handleCloseModal }) => {
       <div>
         <div className="bg-white border border-slate-200 rounded-md p-4 w-fit mx-auto mt-16">
           <div className="flex flex-row justify-between items-center mb-4">
-            <h2 className="font-bold text-2xl">Create Course</h2>
+            <h2 className="font-bold text-2xl">
+              {isEditMode ? "Edit Course" : "Create Course"}
+            </h2>
             <button className="cursor-pointer" onClick={handleCloseModal}>
               X
             </button>
@@ -121,10 +168,9 @@ const ModalAdd: FC<modalAddProps> = ({ handleCloseModal }) => {
                   Choose Category
                 </option>
                 <option value="bisnis">Bisnis</option>
-                <option value="teknologi">Teknologi</option>
+                <option value="pemasaran">Pemasaran</option>
                 <option value="desain">Desain</option>
-                <option value="marketing">Marketing</option>
-                <option value="keuangan">Keuangan</option>
+                <option value="pengembangan diri">Pengembangan Diri</option>
               </select>
             </div>
 
@@ -258,7 +304,7 @@ const ModalAdd: FC<modalAddProps> = ({ handleCloseModal }) => {
               type="submit"
               className="mt-2 w-full rounded-md bg-green-700 py-2 font-medium text-white transition hover:bg-green-800"
             >
-              Submit Course
+              {isEditMode ? "Edit Course" : "Submit Course"}
             </button>
           </form>
         </div>
@@ -267,4 +313,4 @@ const ModalAdd: FC<modalAddProps> = ({ handleCloseModal }) => {
   );
 };
 
-export default ModalAdd;
+export default ModalForm;

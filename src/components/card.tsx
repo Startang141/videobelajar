@@ -16,6 +16,8 @@ interface CardProps {
   price: number;
   rating: number;
   totalReviews: number;
+  onEdit?: () => void;
+  onRead?: () => void;
 }
 
 const Card: FC<CardProps> = ({
@@ -29,6 +31,8 @@ const Card: FC<CardProps> = ({
   rating,
   totalReviews,
   id,
+  onEdit,
+  onRead,
 }) => {
   const formatPrice = (price: number) => {
     if (price >= 1000000) {
@@ -52,7 +56,7 @@ const Card: FC<CardProps> = ({
             alt=""
             width={500}
             height={300}
-            className="w-[100px] md:w-[500px] md:h-[300px] rounded-lg object-cover"
+            className="w-[100px] md:w-[500px] md:h-[240px] rounded-lg object-cover"
           />
           <div className="flex flex-col gap-4">
             <div className="font-poppins flex flex-col md:gap-2">
@@ -95,7 +99,10 @@ const Card: FC<CardProps> = ({
         </div>
         {userLogin?.role === "Admin" && (
           <div className="flex gap-2 flex-row justify-between">
-            <button className="bg-amber-600 hover:bg-amber-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto cursor-pointer">
+            <button
+              className="bg-amber-600 hover:bg-amber-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto cursor-pointer"
+              onClick={onRead}
+            >
               <Image
                 src={"/eye.svg"}
                 width={20}
@@ -104,7 +111,10 @@ const Card: FC<CardProps> = ({
                 className="mx-auto"
               />
             </button>
-            <button className="bg-blue-600 hover:bg-blue-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto cursor-pointer">
+            <button
+              className="bg-blue-600 hover:bg-blue-700 py-2.5 px-6 rounded-md text-sm text-white mt-8 w-full mx-auto cursor-pointer"
+              onClick={onEdit}
+            >
               <Image
                 src={"/pencil.svg"}
                 width={20}
