@@ -1,7 +1,7 @@
 "use client";
 import Card from "@/src/components/card";
 import Link from "next/link";
-import { useState } from "react";
+import { FC, useState } from "react";
 import { useCourse } from "@/src/context/CourseContext";
 
 const Tabs = [
@@ -16,8 +16,34 @@ const Tabs = [
   },
   { id: 5, key: "bisnis", text: "Bisnis", category: "bisnis" },
 ];
+interface InstructorType {
+  name: string;
+  role: string;
+  company: string;
+  image: string;
+}
 
-const TabSection = () => {
+interface CourseType {
+  id: number;
+  title: string;
+  description: string;
+  category: string;
+  thumbImage: string;
+  instructor: InstructorType;
+  rating: number;
+  totalReviews: number;
+  price: number;
+}
+
+interface TabSectionProps {
+  handleOpenEditModal: (course: CourseType) => void;
+  handleOpenDetailModal: (course: CourseType) => void;
+}
+
+const TabSection: FC<TabSectionProps> = ({
+  handleOpenEditModal,
+  handleOpenDetailModal,
+}) => {
   const [isActive, setIsActive] = useState("All");
   const { listCourse } = useCourse();
 
@@ -75,6 +101,8 @@ const TabSection = () => {
                 price={data.price}
                 rating={data.rating}
                 totalReviews={data.totalReviews}
+                onEdit={() => handleOpenEditModal(data)}
+                onRead={() => handleOpenDetailModal(data)}
               ></Card>
             ))}
           </div>
